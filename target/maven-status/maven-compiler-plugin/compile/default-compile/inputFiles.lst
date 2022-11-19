@@ -1,0 +1,13 @@
+/Users/zachhuang/Documents/GitHub/mpcs-51132/quarkusrest-2/src/main/java/edu/uchicago/zachhuang4026/quarkus/Models/PeopleVolumesResponse.java
+/Users/zachhuang/Documents/GitHub/mpcs-51132/quarkusrest-2/src/main/java/edu/uchicago/zachhuang4026/quarkus/Models/DetailedDescription.java
+/Users/zachhuang/Documents/GitHub/mpcs-51132/quarkusrest-2/src/main/java/edu/uchicago/zachhuang4026/quarkus/Resources/ItemResource.java
+/Users/zachhuang/Documents/GitHub/mpcs-51132/quarkusrest-2/src/main/java/edu/uchicago/zachhuang4026/quarkus/Resources/PeopleResource.java
+/Users/zachhuang/Documents/GitHub/mpcs-51132/quarkusrest-2/src/main/java/edu/uchicago/zachhuang4026/quarkus/Services/ItemService.java
+/Users/zachhuang/Documents/GitHub/mpcs-51132/quarkusrest-2/src/main/java/edu/uchicago/zachhuang4026/quarkus/Repositories/PeopleRepository.java
+/Users/zachhuang/Documents/GitHub/mpcs-51132/quarkusrest-2/src/main/java/edu/uchicago/zachhuang4026/quarkus/Models/Item.java
+/Users/zachhuang/Documents/GitHub/mpcs-51132/quarkusrest-2/src/main/java/edu/uchicago/zachhuang4026/quarkus/Models/Result.java
+/Users/zachhuang/Documents/GitHub/mpcs-51132/quarkusrest-2/src/main/java/edu/uchicago/zachhuang4026/quarkus/Models/Context.java
+/Users/zachhuang/Documents/GitHub/mpcs-51132/quarkusrest-2/src/main/java/edu/uchicago/zachhuang4026/quarkus/Repositories/ItemRepository.java
+/Users/zachhuang/Documents/GitHub/mpcs-51132/quarkusrest-2/src/main/java/edu/uchicago/zachhuang4026/quarkus/Services/PeopleService.java
+/Users/zachhuang/Documents/GitHub/mpcs-51132/quarkusrest-2/src/main/java/edu/uchicago/zachhuang4026/quarkus/Models/Image.java
+/Users/zachhuang/Documents/GitHub/mpcs-51132/quarkusrest-2/src/main/java/edu/uchicago/zachhuang4026/quarkus/Models/ItemListElement.java
