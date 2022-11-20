@@ -144,13 +144,14 @@ public class ItemRepository {
         BasicDBObject query = new BasicDBObject();
         query.put("id", id);
 
-
         BasicDBObject update = new BasicDBObject();
-        update.put("id", newItem.getId());
+        update.put("id", id);
         update.put("name", newItem.getName());
         update.put("origin", newItem.getOrigin());
 
         getCollection().replaceOne( query, update );
+
+        System.out.println(newItem.getId());
 
         return newItem;
 

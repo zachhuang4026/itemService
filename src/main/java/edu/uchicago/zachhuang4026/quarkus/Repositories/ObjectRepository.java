@@ -126,9 +126,9 @@ public class ObjectRepository {
         BasicDBObject query = new BasicDBObject();
         query.put("id", id);
 
-
+        System.out.print(id);
         BasicDBObject update = new BasicDBObject();
-        update.put("id", newObject.getId());
+        update.put("id", id);
         update.put("name", newObject.getName());
         update.put("description", newObject.getDescription());
         update.put("categoryID", newObject.getCategoryID());
@@ -136,7 +136,7 @@ public class ObjectRepository {
         update.put("quantity", newObject.getQuantity());
         update.put("bidPrice", newObject.getBidPrice());
         update.put("isSold", newObject.isSold());
-
+        System.out.println(newObject.getName());
         getCollection().replaceOne( query, update );
 
         return newObject;

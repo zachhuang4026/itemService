@@ -48,6 +48,7 @@ public class ObjectService {
 
     public Object update(String id, Object newObject) {
         Object checkDup = objectRepository.get(id);
+        System.out.println(checkDup);
         if (null == checkDup){
             throw new NotSupportedException("The Object with id " + id + " does not exists");
         }
