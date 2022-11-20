@@ -34,6 +34,8 @@ public class ObjectService {
 
     public List<Object> getAll() { return objectRepository.getAll(); }
 
+    public List<Object> getFlaggedAll() { return objectRepository.getFlagedAll(); }
+
     public Object delete(String id) {
         Object item = objectRepository.get(id);
         if (null == item){

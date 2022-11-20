@@ -30,6 +30,10 @@ public class ObjectResources {
     @GET
     public List<Object> getAll() { return objectService.getAll(); }
 
+    @GET
+    @Path("/flagged")
+    public List<Object> getFlaggedAll() { return objectService.getFlaggedAll(); }
+
     @DELETE
     @Path("/{id}")
     public Object delete(@PathParam("id") String id) {

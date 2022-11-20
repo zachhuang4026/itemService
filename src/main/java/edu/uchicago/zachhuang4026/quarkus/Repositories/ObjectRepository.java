@@ -103,6 +103,27 @@ public class ObjectRepository {
         return objects;
     }
 
+    public List<Object> getFlagedAll() {
+        List<Object> objects = new ArrayList<>();
+        BasicDBObject query = new BasicDBObject();
+
+        query.put("isAppropriate", true);
+
+        try {
+            MongoCursor<Document> cursor =
+                    getCollection().find(query).iterator();
+            while (cursor.hasNext()) {
+                Document document = cursor.next();
+                objects.add(doc2item(document));
+            }
+            cursor.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return objects;
+    }
+
     public Object delete( String id ) {
         BasicDBObject query = new BasicDBObject();
         query.put("id", id);
