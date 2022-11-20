@@ -11,8 +11,9 @@ public class Object implements Serializable {
     private int quantity;
     private int bidPrice;
     private boolean isSold;
+    private boolean isAppropriate;
 
-    public Object(String id, String name, String description, String categoryID, String categoryName, int quantity, int bidPrice) {
+    public Object(String id, String name, String description, String categoryID, String categoryName, int quantity, int bidPrice, boolean isSold, boolean isAppropriate) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -20,9 +21,9 @@ public class Object implements Serializable {
         this.categoryName = categoryName;
         this.quantity = quantity;
         this.bidPrice = bidPrice;
-        isSold = false;
+        this.isSold = isSold;
+        this.isAppropriate = isAppropriate;
     }
-
     public Object(){};
 
     public String getId() {
@@ -57,6 +58,10 @@ public class Object implements Serializable {
         return isSold;
     }
 
+    public boolean isAppropriate() {
+        return isAppropriate;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -87,6 +92,10 @@ public class Object implements Serializable {
 
     public void setSold(boolean sold) {
         isSold = sold;
+    }
+
+    public void setAppropriate(boolean appropriate) {
+        isAppropriate = appropriate;
     }
 
     @Override

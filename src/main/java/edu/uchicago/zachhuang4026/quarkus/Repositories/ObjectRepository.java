@@ -5,20 +5,14 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
-import edu.uchicago.zachhuang4026.quarkus.Models.Item;
-import io.quarkus.runtime.StartupEvent;
 import org.bson.Document;
 import edu.uchicago.zachhuang4026.quarkus.Models.Object;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @ApplicationScoped
 public class ObjectRepository {
@@ -68,6 +62,8 @@ public class ObjectRepository {
 
     public Object add(Object object) {
         object.setId(UUID.randomUUID().toString());
+        object.setAppropriate(true);
+        object.setSold(false);
         getCollection().insertOne(item2doc(object));
         return object;
     }
@@ -126,7 +122,6 @@ public class ObjectRepository {
         BasicDBObject query = new BasicDBObject();
         query.put("id", id);
 
-        System.out.print(id);
         BasicDBObject update = new BasicDBObject();
         update.put("id", id);
         update.put("name", newObject.getName());
@@ -136,7 +131,8 @@ public class ObjectRepository {
         update.put("quantity", newObject.getQuantity());
         update.put("bidPrice", newObject.getBidPrice());
         update.put("isSold", newObject.isSold());
-        System.out.println(newObject.getName());
+        update.put("isAppropriate", newObject.isAppropriate());
+
         getCollection().replaceOne( query, update );
 
         return newObject;
