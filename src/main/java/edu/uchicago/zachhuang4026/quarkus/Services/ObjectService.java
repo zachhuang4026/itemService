@@ -1,6 +1,5 @@
 package edu.uchicago.zachhuang4026.quarkus.Services;
 
-import edu.uchicago.zachhuang4026.quarkus.Models.Item;
 import edu.uchicago.zachhuang4026.quarkus.Models.Object;
 import edu.uchicago.zachhuang4026.quarkus.Repositories.ObjectRepository;
 
