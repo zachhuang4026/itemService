@@ -1,17 +1,27 @@
-# Quarkus-MongoDB
+# Item Service: framework with Maven, Quarkus
 ## Author: Zach Huang (zachhuang4026)
 
-## Introduction
-1. The container has been deployed on AWS lightsail with this endpoint url: https://container-service-1.njnffghb7db4a.us-west-2.cs.amazonlightsail.com/people
+## How to run
+1. Start Docker container served with MongoDB
+Container name: itemDB
 
-2. Postman test cases 'People.postman_collection.json' is under the current directory.
+2. Start Docker container served as the Item Server (I published the Docker container on Docker Hub)
+2-1. Log in into Docker Hub
+```shell script
+docker login
+```
+Then fill in your Docker Hub username and password.
 
-## Build/Deploy
-### Local
-1. Open this project with Intellij, simply click on 'Run' botton. The endpoint is http://localhost:8080/people 
+2-2. Run Docker container with specific IP/Port  
+```shell script
+docker run -it --rm -p 127.0.0.1:8080:8080 --name itemServer zachhuang4026/itemserver:latest
+```
 
-### On AWS
-1. Run mvn packages
+
+
+
+## Build/
+1. Run mvn packages 
 ```shell script
 mvn -N io.takari:maven:wrapper
 ```
@@ -20,10 +30,14 @@ mvn -N io.takari:maven:wrapper
 ```
 
 2. Build container (my docker id: zachhuang4026, and I am using MacOS M1 chip)
-$ docker build -f src/main/docker/Dockerfile.jvm -t zachhuang4026/quarkusrest-2-jvm --platform=linux/amd64 .
+```shell script
+docker build -f src/main/docker/Dockerfile.jvm -t zachhuang4026/itermserver --platform=linux/amd64 .
+```
 
 3. Push to Docker Hub 
-$ docker push zachhuang4026/quarkusrest-2-jvm
+```shell script
+$ docker push zachhuang4026/itemserver
+```
 
 4. Build mongoDB
 $ docker run -ti --rm -p 27017:27017 --network="host" mongo:4.0
