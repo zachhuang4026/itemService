@@ -13,6 +13,8 @@ public class Object implements Serializable {
     private boolean isSold;
     private boolean isAppropriate;
 
+    // auction_id
+
     public Object(String id, String name, String description, String categoryID, String categoryName, int quantity, int bidPrice, boolean isSold, boolean isAppropriate) {
         this.id = id;
         this.name = name;

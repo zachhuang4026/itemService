@@ -12,6 +12,7 @@
 
 ### On AWS
 1. Run mvn packages
+$ mvn -N io.takari:maven:wrapper
 $ ./mvnw package
 
 2. Build container (my docker id: zachhuang4026, and I am using MacOS M1 chip)
