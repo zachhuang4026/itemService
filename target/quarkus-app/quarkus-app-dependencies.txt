@@ -97,6 +97,8 @@ io.quarkus.arc:arc::jar:2.11.1.Final
 io.quarkus.security:quarkus-security::jar:1.1.4.Final
 io.quarkus:quarkus-arc::jar:2.11.1.Final
 io.quarkus:quarkus-bootstrap-runner::jar:2.11.1.Final
+io.quarkus:quarkus-container-image-docker::jar:2.11.1.Final
+io.quarkus:quarkus-container-image::jar:2.11.1.Final
 io.quarkus:quarkus-core::jar:2.11.1.Final
 io.quarkus:quarkus-credentials::jar:2.11.1.Final
 io.quarkus:quarkus-development-mode-spi::jar:2.11.1.Final
