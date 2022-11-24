@@ -1,4 +1,8 @@
+/Users/zachhuang/Documents/GitHub/itemService/src/main/java/edu/uchicago/zachhuang4026/quarkus/Repositories/CategoryRepository.java
+/Users/zachhuang/Documents/GitHub/itemService/src/main/java/edu/uchicago/zachhuang4026/quarkus/Services/CategoryService.java
 /Users/zachhuang/Documents/GitHub/itemService/src/main/java/edu/uchicago/zachhuang4026/quarkus/Repositories/ObjectRepository.java
+/Users/zachhuang/Documents/GitHub/itemService/src/main/java/edu/uchicago/zachhuang4026/quarkus/Resources/CategoryResources.java
+/Users/zachhuang/Documents/GitHub/itemService/src/main/java/edu/uchicago/zachhuang4026/quarkus/Models/Category.java
 /Users/zachhuang/Documents/GitHub/itemService/src/main/java/edu/uchicago/zachhuang4026/quarkus/Resources/ObjectResources.java
 /Users/zachhuang/Documents/GitHub/itemService/src/main/java/edu/uchicago/zachhuang4026/quarkus/Models/Object.java
 /Users/zachhuang/Documents/GitHub/itemService/src/main/java/edu/uchicago/zachhuang4026/quarkus/Services/ObjectService.java
