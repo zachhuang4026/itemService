@@ -3,7 +3,18 @@
 
 ## How to run
 1. Start Docker container served with MongoDB
-Container name: itemDB
+1-1. Container name: itemDB
+
+1-2. Execute into the MongoDB container
+```shell script
+docker exec -it itemDB /bin/bash
+```
+
+1-3. Get the IP that MongoDB container is using
+```shell script
+ifconfig
+```
+
 
 2. Start Docker container served as the Item Server (I published the Docker container on Docker Hub)
 2-1. Log in into Docker Hub
