@@ -6,6 +6,7 @@ import edu.uchicago.zachhuang4026.quarkus.Services.ObjectService;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 import java.util.List;
 
 @Path("/objects")
@@ -51,4 +52,31 @@ public class ObjectResources {
     public Object update(@PathParam("id") String id, Object newObject) {
         return objectService.update(id, newObject);
     }
+
+    @GET
+    @Path("/filter/{fields}")
+    public List<Object> filter(@PathParam("fields") String fields) {
+        // categoryID=100,appropriate=true,
+        String[] parsedFields = fields.split(",");
+
+        List<String> fieldArray = new ArrayList<>();
+        List<String> valueArray = new ArrayList<>();
+
+        for (String parsedField:parsedFields) {
+            String field = parsedField.split("=")[0];
+            String value = parsedField.split("=")[1];
+            fieldArray.add(field);
+            valueArray.add(value);
+        }
+        return objectService.filter(fieldArray, valueArray);
+    }
+
+    @GET
+    @Path("/multiple/{ids}")
+    public List<Object> getMultiple(@PathParam("ids") String ids) {
+        String[] parsedFields = ids.split(",");
+
+        return objectService.getMultiple(parsedFields);
+    }
+
 }
