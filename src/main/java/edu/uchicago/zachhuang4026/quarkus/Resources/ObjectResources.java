@@ -1,9 +1,11 @@
 package edu.uchicago.zachhuang4026.quarkus.Resources;
 
+import edu.uchicago.zachhuang4026.quarkus.Models.ItemResponse;
 import edu.uchicago.zachhuang4026.quarkus.Models.Object;
 import edu.uchicago.zachhuang4026.quarkus.Services.ObjectService;
 
 import javax.inject.Inject;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
@@ -18,14 +20,33 @@ public class ObjectResources {
     ObjectService objectService;
 
     @POST
-    public Object add(Object object) {
-        return objectService.add(object);
+    public Response add(Object object) {
+        Object newObject = null;
+
+        try {
+            newObject = objectService.add(object);
+        } catch (Exception e) {
+            ItemResponse errorResponse = new ItemResponse("204", null);
+            return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
+        }
+
+        ItemResponse successResponse = new ItemResponse("200", newObject);
+        return Response.ok().entity(successResponse).build();
     }
 
     @GET
     @Path("/{id}")
-    public Object get(@PathParam("id") String id) {
-        return objectService.get(id);
+    public Response get(@PathParam("id") String id) {
+        Object object = null;
+
+        try {
+            object = objectService.get(id);
+        } catch (Exception e) {
+            ItemResponse errorResponse = new ItemResponse("204", null);
+            return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
+        }
+        ItemResponse successResponse = new ItemResponse("200", object);
+        return Response.ok().entity(successResponse).build();
     }
 
     @GET

@@ -1,7 +1,7 @@
 edu/uchicago/zachhuang4026/quarkus/Services/ObjectService.class
 edu/uchicago/zachhuang4026/quarkus/Models/Category.class
-edu/uchicago/zachhuang4026/quarkus/Models/JSON.class
 edu/uchicago/zachhuang4026/quarkus/Resources/ObjectResources.class
+edu/uchicago/zachhuang4026/quarkus/Models/ItemResponse.class
 edu/uchicago/zachhuang4026/quarkus/Models/Object.class
 edu/uchicago/zachhuang4026/quarkus/Services/CategoryService.class
 edu/uchicago/zachhuang4026/quarkus/Repositories/CategoryRepository.class
