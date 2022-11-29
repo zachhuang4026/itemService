@@ -119,8 +119,8 @@ public class ObjectResources {
 
     @GET
     @Path("/filter/{fields}")
-    public List<Object> filter(@PathParam("fields") String fields) {
-        // categoryID=100,appropriate=true,
+    public Response filter(@PathParam("fields") String fields) {
+        List<Object> objects;
         String[] parsedFields = fields.split(",");
 
         List<String> fieldArray = new ArrayList<>();
@@ -132,7 +132,17 @@ public class ObjectResources {
             fieldArray.add(field);
             valueArray.add(value);
         }
-        return objectService.filter(fieldArray, valueArray);
+
+        try {
+            objects = objectService.filter(fieldArray, valueArray);
+        } catch (Exception e) {
+            ItemResponses errorResponse = new ItemResponses("204", null);
+            return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
+        }
+
+        ItemResponses successResponse = new ItemResponses("200", objects);
+        return Response.ok().entity(successResponse).build();
+
     }
 
     @GET
