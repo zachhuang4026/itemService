@@ -162,36 +162,71 @@ public class ObjectRepository {
 
     }
 
+    public List<Object> filterName(String value) {
+        BasicDBObject query = new BasicDBObject();
+        query.put("name", value);
+
+        FindIterable<Document> documents = getCollection().find(query);
+
+        List<Object> objects = new ArrayList<>();
+        for (Document document : documents) {
+            objects.add(doc2item(document));
+        }
+
+        //this will produce a 404 not found
+        if (objects.size() == 0) return null;
+
+        return objects;
+    }
+
     public List<Object> filter (List<String> fields, List<String> filterValues) {
+
         List<Object> objects = new ArrayList<>();
 
         for (int i = 0; i < fields.size(); i++) {
             BasicDBObject query = new BasicDBObject();
             query.put(fields.get(i), filterValues.get(i));
+
             FindIterable<Document> documents = getCollection().find(query);
 
             for (Document document : documents) {
-                objects.add(doc2item(document));
+                if (objects.contains(doc2item(document))) {
+                    continue;
+                } else {
+                    objects.add(doc2item(document));
+                }
             }
         }
         return objects;
     }
 
+    public List<Object> getMultiples (String[] ids) {
 
-//        BasicDBObject query = new BasicDBObject();
-//
-//        for (int i = 0; i < fields.size(); i++) {
-//            query.put(fields.get(i), filterValues.get(i));
-//
-//        }
-//
-//        FindIterable<Document> documents = getCollection().find(query);
-//
-//        List<Object> objects = new ArrayList<>();
-//        for (Document document : documents) {
-//            objects.add(doc2item(document));
-//        }
-//
-//        return objects;
+        List<Object> objects = new ArrayList<>();
 
+        for (String id:ids) {
+            BasicDBObject query = new BasicDBObject();
+            query.put("id", id);
+
+            try {
+                MongoCursor<Document> cursor =
+                        getCollection().find(query).iterator();
+                while (cursor.hasNext()) {
+                    Document document = cursor.next();
+
+                    if (objects.contains(doc2item(document))) {
+                        continue;
+                    } else {
+                        objects.add(doc2item(document));
+                    }
+                }
+                cursor.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return objects;
+    }
 }

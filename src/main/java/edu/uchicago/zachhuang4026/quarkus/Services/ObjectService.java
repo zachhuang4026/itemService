@@ -56,8 +56,16 @@ public class ObjectService {
         return objectRepository.update(id, newObject);
     }
 
+    public List<Object> filterName(String value) {
+        return objectRepository.filterName(value);
+    }
+
     public List<Object> filter(List<String> fields, List<String> filterValues) {
         return objectRepository.filter(fields, filterValues);
+    }
+
+    public List<Object> getMultiples(String[] ids) {
+        return objectRepository.getMultiples(ids);
     }
 
 }
