@@ -104,8 +104,17 @@ public class ObjectResources {
 
     @PUT
     @Path("update/{id}")
-    public Object update(@PathParam("id") String id, Object newObject) {
-        return objectService.update(id, newObject);
+    public Response update(@PathParam("id") String id, Object newObject) {
+        Object object;
+
+        try {
+            object = objectService.update(id, newObject);
+        } catch (Exception e) {
+            ItemResponse errorResponse = new ItemResponse("204", null);
+            return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
+        }
+        ItemResponse successResponse = new ItemResponse("200", object);
+        return Response.ok().entity(successResponse).build();
     }
 
     @GET
