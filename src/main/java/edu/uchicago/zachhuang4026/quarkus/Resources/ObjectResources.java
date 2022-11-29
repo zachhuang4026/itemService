@@ -83,8 +83,17 @@ public class ObjectResources {
 
     @DELETE
     @Path("/{id}")
-    public Object delete(@PathParam("id") String id) {
-        return objectService.delete(id);
+    public Response delete(@PathParam("id") String id) {
+        Object object;
+
+        try {
+            object = objectService.delete(id);
+        } catch (Exception e) {
+            ItemResponse errorResponse = new ItemResponse("204", null);
+            return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
+        }
+        ItemResponse successResponse = new ItemResponse("200", object);
+        return Response.ok().entity(successResponse).build();
     }
 
     @GET

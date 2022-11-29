@@ -1,10 +1,12 @@
 edu/uchicago/zachhuang4026/quarkus/Services/ObjectService.class
-edu/uchicago/zachhuang4026/quarkus/Models/Category.class
+edu/uchicago/zachhuang4026/quarkus/Models/CategoryResponse.class
 edu/uchicago/zachhuang4026/quarkus/Resources/ObjectResources.class
-edu/uchicago/zachhuang4026/quarkus/Models/ItemResponse.class
 edu/uchicago/zachhuang4026/quarkus/Models/Object.class
-edu/uchicago/zachhuang4026/quarkus/Services/CategoryService.class
-edu/uchicago/zachhuang4026/quarkus/Repositories/CategoryRepository.class
 edu/uchicago/zachhuang4026/quarkus/Repositories/ObjectRepository.class
 edu/uchicago/zachhuang4026/quarkus/Models/ItemResponses.class
 edu/uchicago/zachhuang4026/quarkus/Resources/CategoryResources.class
+edu/uchicago/zachhuang4026/quarkus/Models/Category.class
+edu/uchicago/zachhuang4026/quarkus/Models/CategoryResponses.class
+edu/uchicago/zachhuang4026/quarkus/Models/ItemResponse.class
+edu/uchicago/zachhuang4026/quarkus/Services/CategoryService.class
+edu/uchicago/zachhuang4026/quarkus/Repositories/CategoryRepository.class
