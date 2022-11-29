@@ -64,4 +64,8 @@ public class ObjectService {
         return objectRepository.filter(fields, filterValues);
     }
 
+    public List<Object> getMultiples(String[] ids) {
+        return objectRepository.getMultiples(ids);
+    }
+
 }

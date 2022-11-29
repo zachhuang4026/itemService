@@ -164,4 +164,22 @@ public class ObjectResources {
         ItemResponses successResponse = new ItemResponses("200", objects);
         return Response.ok().entity(successResponse).build();
     }
+
+    // not working now
+    @GET
+    @Path("/multiples/{ids}")
+    public Response getMultiples(@PathParam("ids") String ids) {
+        String[] parsedFields = ids.split(",");
+        List<Object> objects;
+
+        try {
+            objects = objectService.getMultiples(parsedFields);
+        } catch (Exception e) {
+            ItemResponses errorResponse = new ItemResponses("204", null);
+            return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
+        }
+
+        ItemResponses successResponse = new ItemResponses("200", objects);
+        return Response.ok().entity(successResponse).build();
+    }
 }

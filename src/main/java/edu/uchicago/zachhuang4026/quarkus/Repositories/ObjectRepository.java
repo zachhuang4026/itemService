@@ -197,9 +197,36 @@ public class ObjectRepository {
                 }
             }
         }
+        return objects;
+    }
 
+    public List<Object> getMultiples (String[] ids) {
 
+        List<Object> objects = new ArrayList<>();
 
+        for (String id:ids) {
+            BasicDBObject query = new BasicDBObject();
+            query.put("id", id);
+
+            try {
+                MongoCursor<Document> cursor =
+                        getCollection().find(query).iterator();
+                while (cursor.hasNext()) {
+                    Document document = cursor.next();
+
+                    if (objects.contains(doc2item(document))) {
+                        continue;
+                    } else {
+                        objects.add(doc2item(document));
+                    }
+                }
+                cursor.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
         return objects;
     }
 }
