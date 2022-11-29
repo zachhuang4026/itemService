@@ -1,5 +1,4 @@
 package edu.uchicago.zachhuang4026.quarkus.Repositories;
-import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
@@ -150,6 +149,7 @@ public class ObjectRepository {
         update.put("description", newObject.getDescription());
         update.put("categoryID", newObject.getCategoryID());
         update.put("categoryName", newObject.getCategoryName());
+        update.put("imageURL", newObject.getImageURL());
         update.put("quantity", newObject.getQuantity());
         update.put("bidPrice", newObject.getBidPrice());
         update.put("isSold", newObject.isSold());
@@ -163,45 +163,35 @@ public class ObjectRepository {
     }
 
     public List<Object> filter (List<String> fields, List<String> filterValues) {
-        BasicDBObject query = new BasicDBObject();
+        List<Object> objects = new ArrayList<>();
 
         for (int i = 0; i < fields.size(); i++) {
+            BasicDBObject query = new BasicDBObject();
             query.put(fields.get(i), filterValues.get(i));
+            FindIterable<Document> documents = getCollection().find(query);
 
-        }
-
-        FindIterable<Document> documents = getCollection().find(query);
-
-        List<Object> objects = new ArrayList<>();
-        for (Document document : documents) {
-            objects.add(doc2item(document));
-        }
-
-        return objects;
-    }
-
-    public List<Object> getMultiple (String[] ids) {
-        BasicDBObject query = new BasicDBObject();
-        List<Object> objects = new ArrayList<>();
-
-        for (String id:ids) {
-            query.put("id", id);
-            try {
-                MongoCursor<Document> cursor =
-                        getCollection().find(query).iterator();
-                while (cursor.hasNext()) {
-                    Document document = cursor.next();
-                    objects.add(doc2item(document));
-                }
-                cursor.close();
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            for (Document document : documents) {
+                objects.add(doc2item(document));
             }
-
         }
         return objects;
     }
 
+
+//        BasicDBObject query = new BasicDBObject();
+//
+//        for (int i = 0; i < fields.size(); i++) {
+//            query.put(fields.get(i), filterValues.get(i));
+//
+//        }
+//
+//        FindIterable<Document> documents = getCollection().find(query);
+//
+//        List<Object> objects = new ArrayList<>();
+//        for (Document document : documents) {
+//            objects.add(doc2item(document));
+//        }
+//
+//        return objects;
 
 }

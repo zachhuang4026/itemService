@@ -8,6 +8,7 @@ public class Object implements Serializable {
     private String description;
     private String categoryID;
     private String categoryName;
+    private String imageURL;
     private int quantity;
     private int bidPrice;
     private boolean isSold;
@@ -15,12 +16,13 @@ public class Object implements Serializable {
 
     private String auctionID;
 
-    public Object(String id, String name, String description, String categoryID, String categoryName, int quantity, int bidPrice, boolean isSold, boolean isAppropriate, String auctionID) {
+    public Object(String id, String name, String description, String categoryID, String categoryName, String imageURL, int quantity, int bidPrice, boolean isSold, boolean isAppropriate, String auctionID) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.categoryID = categoryID;
         this.categoryName = categoryName;
+        this.imageURL = imageURL;
         this.quantity = quantity;
         this.bidPrice = bidPrice;
         this.isSold = isSold;
@@ -47,6 +49,14 @@ public class Object implements Serializable {
 
     public String getCategoryName() {
         return categoryName;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public String getAuctionID() {
