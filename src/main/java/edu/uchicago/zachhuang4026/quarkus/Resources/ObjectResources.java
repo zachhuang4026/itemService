@@ -1,6 +1,7 @@
 package edu.uchicago.zachhuang4026.quarkus.Resources;
 
 import edu.uchicago.zachhuang4026.quarkus.Models.ItemResponse;
+import edu.uchicago.zachhuang4026.quarkus.Models.ItemResponses;
 import edu.uchicago.zachhuang4026.quarkus.Models.Object;
 import edu.uchicago.zachhuang4026.quarkus.Services.ObjectService;
 
@@ -21,7 +22,7 @@ public class ObjectResources {
 
     @POST
     public Response add(Object object) {
-        Object newObject = null;
+        Object newObject;
 
         try {
             newObject = objectService.add(object);
@@ -37,7 +38,7 @@ public class ObjectResources {
     @GET
     @Path("/{id}")
     public Response get(@PathParam("id") String id) {
-        Object object = null;
+        Object object;
 
         try {
             object = objectService.get(id);
@@ -50,11 +51,35 @@ public class ObjectResources {
     }
 
     @GET
-    public List<Object> getAll() { return objectService.getAll(); }
+    public Response getAll() {
+        List<Object> objects;
+
+        try {
+            objects = objectService.getAll();
+        } catch (Exception e) {
+            ItemResponses errorResponse = new ItemResponses("204", null);
+            return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
+        }
+
+        ItemResponses successResponse = new ItemResponses("200", objects);
+        return Response.ok().entity(successResponse).build();
+    }
 
     @GET
     @Path("/flagged")
-    public List<Object> getFlaggedAll() { return objectService.getFlaggedAll(); }
+    public Response getFlaggedAll() {
+        List<Object> objects;
+
+        try {
+            objects = objectService.getFlaggedAll();
+        } catch (Exception e) {
+            ItemResponses errorResponse = new ItemResponses("204", null);
+            return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
+        }
+
+        ItemResponses successResponse = new ItemResponses("200", objects);
+        return Response.ok().entity(successResponse).build();
+    }
 
     @DELETE
     @Path("/{id}")

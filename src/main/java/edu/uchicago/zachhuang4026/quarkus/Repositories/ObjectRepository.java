@@ -150,6 +150,7 @@ public class ObjectRepository {
         update.put("description", newObject.getDescription());
         update.put("categoryID", newObject.getCategoryID());
         update.put("categoryName", newObject.getCategoryName());
+        update.put("imageURL", newObject.getImageURL());
         update.put("quantity", newObject.getQuantity());
         update.put("bidPrice", newObject.getBidPrice());
         update.put("isSold", newObject.isSold());
