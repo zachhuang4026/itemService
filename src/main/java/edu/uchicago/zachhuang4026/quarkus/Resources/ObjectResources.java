@@ -121,24 +121,17 @@ public class ObjectResources {
     @Path("/filter/{fields}")
     public List<Object> filter(@PathParam("fields") String fields) {
         // categoryID=100,appropriate=true,
-        //String[] parsedFields = fields.split(",");
+        String[] parsedFields = fields.split(",");
 
-        //List<String> fieldArray = new ArrayList<>();
-        //List<String> valueArray = new ArrayList<>();
-
-//        for (String parsedField:parsedFields) {
-//            String field = parsedField.split("=")[0];
-//            String value = parsedField.split("=")[1];
-//            fieldArray.add(field);
-//            valueArray.add(value);
-//        }
         List<String> fieldArray = new ArrayList<>();
-        fieldArray.add("name");
-        fieldArray.add("categoryID");
-
         List<String> valueArray = new ArrayList<>();
-        valueArray.add("white skirt");
-        valueArray.add("321");
+
+        for (String parsedField:parsedFields) {
+            String field = parsedField.split("=")[0];
+            String value = parsedField.split("=")[1];
+            fieldArray.add(field);
+            valueArray.add(value);
+        }
         return objectService.filter(fieldArray, valueArray);
     }
 
