@@ -1,5 +1,4 @@
 package edu.uchicago.zachhuang4026.quarkus.Repositories;
-import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
@@ -164,22 +163,37 @@ public class ObjectRepository {
     }
 
     public List<Object> filter (List<String> fields, List<String> filterValues) {
-        BasicDBObject query = new BasicDBObject();
+        List<Object> objects = new ArrayList<>();
 
         for (int i = 0; i < fields.size(); i++) {
+            BasicDBObject query = new BasicDBObject();
             query.put(fields.get(i), filterValues.get(i));
+            FindIterable<Document> documents = getCollection().find(query);
 
+            for (Document document : documents) {
+                objects.add(doc2item(document));
+            }
         }
-
-        FindIterable<Document> documents = getCollection().find(query);
-
-        List<Object> objects = new ArrayList<>();
-        for (Document document : documents) {
-            objects.add(doc2item(document));
-        }
-
         return objects;
     }
+
+
+//        BasicDBObject query = new BasicDBObject();
+//
+//        for (int i = 0; i < fields.size(); i++) {
+//            query.put(fields.get(i), filterValues.get(i));
+//
+//        }
+//
+//        FindIterable<Document> documents = getCollection().find(query);
+//
+//        List<Object> objects = new ArrayList<>();
+//        for (Document document : documents) {
+//            objects.add(doc2item(document));
+//        }
+//
+//        return objects;
+
 
     public List<Object> getMultiple (String[] ids) {
         BasicDBObject query = new BasicDBObject();

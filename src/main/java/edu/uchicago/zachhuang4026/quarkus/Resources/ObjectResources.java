@@ -103,17 +103,24 @@ public class ObjectResources {
     @Path("/filter/{fields}")
     public List<Object> filter(@PathParam("fields") String fields) {
         // categoryID=100,appropriate=true,
-        String[] parsedFields = fields.split(",");
+        //String[] parsedFields = fields.split(",");
 
+        //List<String> fieldArray = new ArrayList<>();
+        //List<String> valueArray = new ArrayList<>();
+
+//        for (String parsedField:parsedFields) {
+//            String field = parsedField.split("=")[0];
+//            String value = parsedField.split("=")[1];
+//            fieldArray.add(field);
+//            valueArray.add(value);
+//        }
         List<String> fieldArray = new ArrayList<>();
-        List<String> valueArray = new ArrayList<>();
+        fieldArray.add("name");
+        fieldArray.add("categoryID");
 
-        for (String parsedField:parsedFields) {
-            String field = parsedField.split("=")[0];
-            String value = parsedField.split("=")[1];
-            fieldArray.add(field);
-            valueArray.add(value);
-        }
+        List<String> valueArray = new ArrayList<>();
+        valueArray.add("white skirt");
+        valueArray.add("321");
         return objectService.filter(fieldArray, valueArray);
     }
 
@@ -123,6 +130,19 @@ public class ObjectResources {
         String[] parsedFields = ids.split(",");
 
         return objectService.getMultiple(parsedFields);
+//        List<Object> objects;
+//        String[] parsedFields = ids.split(",");
+//
+//        try {
+//
+//            objects = objectService.getMultiple(parsedFields);
+//        } catch (Exception e) {
+//            ItemResponses errorResponse = new ItemResponses("204", null);
+//            return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
+//        }
+//
+//        ItemResponses successResponse = new ItemResponses("200", objects);
+//        return Response.ok().entity(successResponse).build();
     }
 
 }
