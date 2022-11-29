@@ -144,23 +144,21 @@ public class ObjectResources {
 
     @GET
     @Path("/multiple/{ids}")
-    public List<Object> getMultiple(@PathParam("ids") String ids) {
-        String[] parsedFields = ids.split(",");
+    public Response getMultiple(@PathParam("ids") String ids) {
 
-        return objectService.getMultiple(parsedFields);
-//        List<Object> objects;
-//        String[] parsedFields = ids.split(",");
-//
-//        try {
-//
-//            objects = objectService.getMultiple(parsedFields);
-//        } catch (Exception e) {
-//            ItemResponses errorResponse = new ItemResponses("204", null);
-//            return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
-//        }
-//
-//        ItemResponses successResponse = new ItemResponses("200", objects);
-//        return Response.ok().entity(successResponse).build();
+        String[] idArray = ids.split(",");
+
+        List<Object> objects = new ArrayList<>();
+
+        try {
+            for (String id:idArray) {
+                objects.add(objectService.get(id));
+            }
+        } catch (Exception e) {
+            ItemResponses errorResponse = new ItemResponses("204", null);
+            return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
+        }
+        ItemResponses successResponse = new ItemResponses("200", objects);
+        return Response.ok().entity(successResponse).build();
     }
-
 }

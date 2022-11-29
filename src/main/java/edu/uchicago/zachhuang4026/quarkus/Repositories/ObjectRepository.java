@@ -194,29 +194,4 @@ public class ObjectRepository {
 //
 //        return objects;
 
-
-    public List<Object> getMultiple (String[] ids) {
-        BasicDBObject query = new BasicDBObject();
-        List<Object> objects = new ArrayList<>();
-
-        for (String id:ids) {
-            query.put("id", id);
-            try {
-                MongoCursor<Document> cursor =
-                        getCollection().find(query).iterator();
-                while (cursor.hasNext()) {
-                    Document document = cursor.next();
-                    objects.add(doc2item(document));
-                }
-                cursor.close();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-        return objects;
-    }
-
-
 }
