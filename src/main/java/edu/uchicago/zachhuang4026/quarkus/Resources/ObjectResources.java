@@ -182,4 +182,10 @@ public class ObjectResources {
         ItemResponses successResponse = new ItemResponses("200", objects);
         return Response.ok().entity(successResponse).build();
     }
+
+    @GET
+    @Path("/check")
+    public Response sanityCheck() {
+        return Response.ok().entity("200, Item Service Running").build();
+    }
 }

@@ -107,7 +107,7 @@ public class ObjectRepository {
         List<Object> objects = new ArrayList<>();
         BasicDBObject query = new BasicDBObject();
 
-        query.put("isAppropriate", true);
+        query.put("isAppropriate", false);
 
         try {
             MongoCursor<Document> cursor =
