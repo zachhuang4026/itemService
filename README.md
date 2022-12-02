@@ -26,7 +26,7 @@ docker pull zachhuang4026/itemdb:latest
 
 5. Run the docker container 
 ```shell script
-docker run -p 27017:27017 --net ebay --ip 172.20.0.6 --name itemDB zachhuang4026/itemdb:latest
+docker run -p 27017:27017 -v MongoDockerData:/data/db --net ebay --ip 172.20.0.6 --name itemDB zachhuang4026/itemdb:latest
 ```
 (Please wait until seeing a word `QUARKUS`, I used Quarkus to auto fire up all the java code, so no need to execute into the container manually)   
  
