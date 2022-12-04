@@ -6,11 +6,16 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
+import edu.uchicago.zachhuang4026.quarkus.Models.ItemResponse;
+import edu.uchicago.zachhuang4026.quarkus.Models.ItemResponses;
 import edu.uchicago.zachhuang4026.quarkus.Models.Object;
 import org.bson.Document;
 import edu.uchicago.zachhuang4026.quarkus.Models.Category;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -61,10 +66,17 @@ public class CategoryRepository {
     }
 
     public Category add(Category category) {
+        //category.setId(UUID.randomUUID().toString());
+        getCollection().insertOne(item2doc(category));
+        return category;
+    }
+
+    public Category addIDDefault(Category category) {
         category.setId(UUID.randomUUID().toString());
         getCollection().insertOne(item2doc(category));
         return category;
     }
+
 
     public Category get(String id) {
         BasicDBObject query = new BasicDBObject();
