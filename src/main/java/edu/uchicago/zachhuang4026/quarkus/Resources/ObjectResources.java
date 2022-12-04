@@ -156,7 +156,7 @@ public class ObjectResources {
             return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
         }
 
-        ItemResponses successResponse = new ItemResponses("201", objects);
+        ItemResponses successResponse = new ItemResponses("200", objects);
         return Response.ok().entity(successResponse).build();
 
     }
