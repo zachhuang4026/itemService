@@ -7,6 +7,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.NotSupportedException;
+import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
@@ -21,6 +22,14 @@ public class ObjectService {
             throw new NotSupportedException("The Object with id " + object.getId() + " already exists");
         }
         return objectRepository.add(object);
+    }
+
+    public List<Object> addMultiple(List<Object> objects) {
+        List<Object> result = new ArrayList<>();
+        for (Object object:objects) {
+            result.add(add(object));
+        }
+        return result;
     }
 
     public Object get(String id) {

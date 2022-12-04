@@ -35,6 +35,22 @@ public class ObjectResources {
         return Response.ok().entity(successResponse).build();
     }
 
+    @POST
+    @Path("/multiple")
+    public Response addMultiple(List<Object> objects) {
+        List<Object> newObjects;
+
+        try {
+            newObjects = objectService.addMultiple(objects);
+        } catch (Exception e) {
+            ItemResponse errorResponse = new ItemResponse("204", null);
+            return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
+        }
+
+        ItemResponses successResponse = new ItemResponses("200", newObjects);
+        return Response.ok().entity(successResponse).build();
+    }
+
     @GET
     @Path("/{id}")
     public Response get(@PathParam("id") String id) {
@@ -140,7 +156,7 @@ public class ObjectResources {
             return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
         }
 
-        ItemResponses successResponse = new ItemResponses("200", objects);
+        ItemResponses successResponse = new ItemResponses("201", objects);
         return Response.ok().entity(successResponse).build();
 
     }
@@ -188,4 +204,5 @@ public class ObjectResources {
     public Response sanityCheck() {
         return Response.ok().entity("200, Item Service Running").build();
     }
+
 }
