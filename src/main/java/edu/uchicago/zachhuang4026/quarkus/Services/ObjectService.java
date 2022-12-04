@@ -24,6 +24,15 @@ public class ObjectService {
         return objectRepository.add(object);
     }
 
+    public Object addIDDefault(Object object) {
+//        Object checkDup = objectRepository.get(object.getId());
+//
+//        if (null != checkDup){
+//            throw new NotSupportedException("The Object with id " + object.getId() + " already exists");
+//        }
+        return objectRepository.addIDDefault(object);
+    }
+
     public List<Object> addMultiple(List<Object> objects) {
         List<Object> result = new ArrayList<>();
         for (Object object:objects) {

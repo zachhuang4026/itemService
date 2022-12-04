@@ -23,12 +23,27 @@ public class CategoryResources {
         Category newCategory;
 
         try {
-            newCategory = categoryService.add(category);
+            newCategory = categoryService.addIDDefault(category);
         }  catch (Exception e) {
             CategoryResponse errorResponse = new CategoryResponse("204", null);
             return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
         }
         CategoryResponse successResponse = new CategoryResponse("200", newCategory);
+        return Response.ok().entity(successResponse).build();
+    }
+    @POST
+    @Path("/multiple")
+    public Response addMultiple(List<Category> categories) {
+        List<Category> newCategories;
+
+        try {
+            newCategories = categoryService.addMultiple(categories);
+        } catch (Exception e) {
+            ItemResponse errorResponse = new ItemResponse("204", null);
+            return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();
+        }
+
+        CategoryResponses successResponse = new CategoryResponses("200", newCategories);
         return Response.ok().entity(successResponse).build();
     }
 

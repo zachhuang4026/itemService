@@ -9,6 +9,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.NotSupportedException;
+import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
@@ -23,6 +24,23 @@ public class CategoryService {
             throw new NotSupportedException("The category with id " + category.getId() + " already exists");
         }
         return categoryRepository.add(category);
+    }
+
+    public Category addIDDefault(Category category) {
+        //Category checkDup = categoryRepository.get(category.getId());
+
+        //if (null != checkDup){
+        //    throw new NotSupportedException("The category with id " + category.getId() + " already exists");
+        //}
+        return categoryRepository.addIDDefault(category);
+    }
+
+    public List<Category> addMultiple(List<Category> categories) {
+        List<Category> result = new ArrayList<>();
+        for (Category category:categories) {
+            result.add(add(category));
+        }
+        return result;
     }
 
     public Category get(String id) {

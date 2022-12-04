@@ -25,7 +25,7 @@ public class ObjectResources {
         Object newObject;
 
         try {
-            newObject = objectService.add(object);
+            newObject = objectService.addIDDefault(object);
         } catch (Exception e) {
             ItemResponse errorResponse = new ItemResponse("204", null);
             return Response.status(Response.Status.NO_CONTENT).entity(errorResponse).build();

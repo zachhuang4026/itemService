@@ -62,6 +62,14 @@ public class ObjectRepository {
     }
 
     public Object add(Object object) {
+        //object.setId(UUID.randomUUID().toString());
+        object.setAppropriate(true);
+        object.setSold(false);
+        getCollection().insertOne(item2doc(object));
+        return object;
+    }
+
+    public Object addIDDefault(Object object) {
         object.setId(UUID.randomUUID().toString());
         object.setAppropriate(true);
         object.setSold(false);
