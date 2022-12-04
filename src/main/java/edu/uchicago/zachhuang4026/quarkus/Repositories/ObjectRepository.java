@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 @ApplicationScoped
 public class ObjectRepository {
@@ -164,8 +165,8 @@ public class ObjectRepository {
 
     public List<Object> filterName(String value) {
         BasicDBObject query = new BasicDBObject();
-        query.put("name", value);
-
+        //query.put("name", value);
+        query.put("name", Pattern.compile(value, Pattern.CASE_INSENSITIVE));
         FindIterable<Document> documents = getCollection().find(query);
 
         List<Object> objects = new ArrayList<>();
@@ -185,8 +186,8 @@ public class ObjectRepository {
 
         for (int i = 0; i < fields.size(); i++) {
             BasicDBObject query = new BasicDBObject();
-            query.put(fields.get(i), filterValues.get(i));
-
+            //query.put(fields.get(i), filterValues.get(i));
+            query.put(fields.get(i), new BasicDBObject("$regex", filterValues.get(i) + ".*").append("$options", "i"));
             FindIterable<Document> documents = getCollection().find(query);
 
             for (Document document : documents) {
